@@ -4,8 +4,11 @@ import Utils.GenelWebDriver;
 import Utils.Tools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class _02_AddressFunctionality extends GenelWebDriver {
     /*
@@ -17,7 +20,7 @@ public class _02_AddressFunctionality extends GenelWebDriver {
 
      */
     @Test
-    void newAdress(){
+    void newAddress(){
         WebElement adress= driver.findElement(By.xpath("//*[text()='Address Book']"));
         adress.click();
 
@@ -49,9 +52,11 @@ public class _02_AddressFunctionality extends GenelWebDriver {
         Select menu=new Select(country);
         menu.selectByVisibleText("Turkey");
 
+        wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector("[id='input-zone']>option"))));
+
         WebElement zone=driver.findElement(By.id("input-zone"));
         Select menu1=new Select(zone);
-        menu1.selectByVisibleText("İstanbul");
+        menu1.selectByIndex(10);
 
         WebElement suscribe=driver.findElement(By.cssSelector("input[value='0']"));
         suscribe.click();
@@ -63,11 +68,16 @@ public class _02_AddressFunctionality extends GenelWebDriver {
 
     }
 
-    @Test(dependsOnMethods = {"newAdress"})
-    void edtAdress(){
+    @Test(dependsOnMethods = {"newAddress"})
+    void editAddress(){
 
-        WebElement edit= driver.findElement(By.xpath("//*[text()='Edit']"));
-        edit.click();
+        WebElement addresBook= driver.findElement(By.linkText("Address Book"));
+        addresBook.click();
+
+        List<WebElement> editAll=driver.findElements(By.linkText("Edit"));
+        WebElement sonEdit=editAll.get(editAll.size() -1);
+        System.out.println("editAll = " + editAll.size());
+        sonEdit.click();
 
         WebElement name=driver.findElement(By.id("input-firstname"));
         name.clear();
@@ -80,14 +90,27 @@ public class _02_AddressFunctionality extends GenelWebDriver {
         WebElement cnt=driver.findElement(By.cssSelector("input[value='Continue']"));
         cnt.click();
 
-        WebElement delete= driver.findElement(By.xpath("//*[text()='Delete']"));
-        delete.click();
-
 
         Tools.successMessageValidation();
 
     }
+
+    @Test(dependsOnMethods = {"editAddress"})
+    void deleteAddress(){
+        WebElement addresBook= driver.findElement(By.linkText("Address Book"));
+        addresBook.click();
+
+        List<WebElement> deleteAll=driver.findElements(By.linkText("Delete"));
+        WebElement sonEdit=deleteAll.get(deleteAll.size() -2);
+        sonEdit.click();
+    }
 }
+
+
+
+
+
+
  /*
        WebElement country=driver.findElement(By.id("input-country"));
        Select countryS=new Select(country);
@@ -97,9 +120,15 @@ public class _02_AddressFunctionality extends GenelWebDriver {
        Select state=new Select(State);
        System.out.println("state.getOptions().size() 1 = " + state.getOptions().size());
 
+
+       ÖNEMLİİİİ
+       ***************************************************
        wait.until(ExpectedConditions.numberOfElementsToBeLessThan(By.cssSelector("[id='input-zone']>option"),
                    state.getOptions().size()));
        // option ların sayısı ilk halinden küçük olana kadar bekle : yeni durum gelene kadar bekle
+
+       ****************************************************
+
 
        System.out.println("state.getOptions().size() 2 = " + state.getOptions().size());
 

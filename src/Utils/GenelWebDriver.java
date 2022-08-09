@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.logging.Level;
@@ -33,13 +32,14 @@ public class GenelWebDriver {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // sadece ana sayfa yüklenirken en başta
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30)); // bütün webElement için geçerli
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); // bütün webElement için geçerli
 
         driver.get("http://opencart.abstracta.us/index.php?route=account/login");
 
+        LoginTest();
+
     }
 
-    @Test
     void LoginTest(){
 
         WebElement inputEmail= driver.findElement(By.id("input-email"));
