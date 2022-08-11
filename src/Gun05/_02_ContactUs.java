@@ -29,7 +29,9 @@ public class _02_ContactUs extends GenelWebDriver {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0, document.documentElement.scrollHeight)");
 
-        driver.findElement(By.xpath("//*[contains(@class,'buttons')]/div/input")).click();
+        WebElement btn=driver.findElement(By.xpath("//*[contains(@class,'buttons')]/div/input"));
+        jse.executeScript("arguments[0].scrollIntoView()", btn);
+        btn.click();
 
         WebElement cntuslabl = driver.findElement(By.cssSelector("[id='content']>h1"));
 
