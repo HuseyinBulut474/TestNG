@@ -38,6 +38,10 @@ public class Tools {
         result=result.replaceAll("[^\\d]","");
         return Double.parseDouble(result);
     }
+
+    public static int RandomGenerator(int max){
+        return (int)(Math.random()*max)+1;
+    }// max=4 ise 0123
 }
 
 
