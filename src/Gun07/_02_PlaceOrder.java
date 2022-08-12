@@ -1,9 +1,7 @@
 package Gun07;
 
 import Utils.GenelWebDriver;
-import Utils.Tools;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -40,18 +38,13 @@ public class _02_PlaceOrder extends GenelWebDriver {
         WebElement checkOut = driver.findElement(By.linkText("Checkout"));
         checkOut.click();
 
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-
         WebElement continue1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("button-payment-address")));
-        jse.executeScript("arguments[0].scrollIntoView()", continue1);
         continue1.click();
 
         WebElement continue2 = wait.until(ExpectedConditions.elementToBeClickable(By.id("button-shipping-address")));
-        jse.executeScript("arguments[0].scrollIntoView()", continue2);
         continue2.click();
 
         WebElement continue3 = wait.until(ExpectedConditions.elementToBeClickable(By.id("button-shipping-method")));
-        jse.executeScript("arguments[0].scrollIntoView()", continue3);
         continue3.click();
 
         WebElement agree=driver.findElement(By.name("agree"));

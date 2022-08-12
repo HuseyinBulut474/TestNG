@@ -19,41 +19,40 @@ public class _03_PlaceOrderElements {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(name = "search")
+    @FindBy(name="search")
     public WebElement searchBox;
 
     @FindBy(className = "input-group-btn")
-    public  WebElement searchButton;
+    public WebElement searchButton;
 
-    @FindBy(xpath = "//div[@class='button-group']//button")
-    public  WebElement addToCart;
+    @FindBy(css = "[onclick*='48']>[class='fa fa-shopping-cart']")
+    public WebElement addToCart;
 
-    @FindBy(linkText = "shopping cart")
-    public  WebElement shoppingCart;
+    @FindBy(css = "[class='fa fa-check-circle']~a~a")
+    public WebElement shoppingCart;
 
     @FindBy(linkText = "Checkout")
-    public  WebElement checkOut;
+    public WebElement checkOut;
 
-    @FindBy(id = "button-payment-address")
+    @FindBy(id="button-payment-address")
     public WebElement continue1;
 
-    @FindBy(id = "button-shipping-address")
+    @FindBy(id="button-shipping-address")
     public WebElement continue2;
 
-    @FindBy(id = "button-shipping-method")
+    @FindBy(id="button-shipping-method")
     public WebElement continue3;
 
-    @FindBy(name = "agree")
-    public  WebElement agree;
+    @FindBy(name="agree")
+    public WebElement agree;
 
-    @FindBy(id = "button-payment-method")
+    @FindBy(id="button-payment-method")
     public WebElement continue4;
 
-    @FindBy(id = "button-confirm")
-    public WebElement  confirm;
+    @FindBy(id="button-confirm")
+    public WebElement confirm;
 
-    @FindBy(css = "[id='content']>h1")
+    @FindBy(css="[id='content']>h1")
     public WebElement confirmTxt;
-
 
 }

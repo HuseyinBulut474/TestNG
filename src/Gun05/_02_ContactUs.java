@@ -23,18 +23,12 @@ public class _02_ContactUs extends GenelWebDriver {
     void Contact(String gelenMesaj){
 
         driver.findElement(By.linkText("Contact Us")).click();
-
         driver.findElement(By.id("input-enquiry")).sendKeys(gelenMesaj);
 
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollBy(0, document.documentElement.scrollHeight)");
 
         WebElement btn=driver.findElement(By.xpath("//*[contains(@class,'buttons')]/div/input"));
-        jse.executeScript("arguments[0].scrollIntoView()", btn);
         btn.click();
-
         WebElement cntuslabl = driver.findElement(By.cssSelector("[id='content']>h1"));
-
         System.out.println(cntuslabl.getText());
 
         Assert.assertEquals("Contact Us",cntuslabl.getText(),"Karşılaştırma sonucu : ");

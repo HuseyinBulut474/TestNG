@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -26,7 +27,7 @@ public class GenelWebDriver {
         System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.manage().window().maximize(); // max
+        //driver.manage().window().maximize(); // max
         driver.manage().deleteAllCookies();  //
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -37,6 +38,10 @@ public class GenelWebDriver {
         driver.get("http://opencart.abstracta.us/index.php?route=account/login");
 
         LoginTest();
+
+        Actions actions=new Actions(driver);
+        actions.moveToElement(driver.findElement(By.className("bitnami-corner-image"))).perform();
+        driver.findElement(By.id("bitnami-close-banner-button")).click();
 
     }
 
