@@ -37,7 +37,7 @@ public class GenelWebDriver {
 
         driver.get("http://opencart.abstracta.us/index.php?route=account/login");
 
-        LoginTest();
+       // LoginTest();
 
         Actions actions=new Actions(driver);
         actions.moveToElement(driver.findElement(By.className("bitnami-corner-image"))).perform();
